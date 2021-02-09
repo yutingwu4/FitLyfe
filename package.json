@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yutingwu4/FitLyfe#readme",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.17.1"
   },
   "devDependencies": {
@@ -27,6 +28,29 @@
     "cross-env": "^7.0.3",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
+=======
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.5.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.2",
+    "html-webpack-plugin": "^5.0.0",
+    "nodemon": "^2.0.7",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^3.3.11",
+>>>>>>> 876f20fbc2796c2c09c8106054c73bd9e36a67cc
     "webpack-dev-server": "^3.11.2"
   }
 }
