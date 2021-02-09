@@ -1,9 +1,10 @@
-const PORT = 4427;
+const PORT = 3000;
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const morgan = require('morgan')
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files:

@@ -48,7 +48,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html',
+      template: './views/index.html',
     }),
   ],
   resolve: { extensions: ['.js', '.jsx'] },
