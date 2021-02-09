@@ -4,7 +4,7 @@
   "description": "Your fit lyfe plan boiled down to an easy to use application built for trainers.",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server/server.js",
+    "start": "cross-env NODE_ENV=production nodemon server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\""
   },
@@ -24,6 +24,7 @@
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
