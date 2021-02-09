@@ -1,19 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const trainerController = require('../controllers/trainerController.js')
-
-const { Pool } = require('pg');
-
-const PG_URI = 'postgres://dfqpfaet:GigyWQsljfTAXNLHbXTY62dWSgN2jTRm@ziggy.db.elephantsql.com:5432/dfqpfaet'
-
-const pool = new Pool({
-  connectionString: PG_URI,
-});
+const TrainerController = require('../../controllers/trainerController.js')
 
 
-router.get("/players",  async (req, res) => {
-  const results = await pool.query("SELECT * FROM players")
-  console.table(results.rows)
+//set up error handling
+// get request to /getTrainers and use the trainer controller to set the trainers on the response object
+router.get("/getTrainers",  TrainerController.getTrainers, (req, res) => {
+  return res.send(res.locals.allTrainers)
 })
+
 
 module.exports = router
