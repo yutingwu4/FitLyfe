@@ -15,10 +15,10 @@ const traineeController = {
       (err, results) => {
         // console.log(results.rows)
       if(err){
-        console.log('GET ALL Trainees Controller Error:', err)
+        console.log('GET ALL Trainees Controller Error:' + JSON.stringify(err))
       } else {
         res.locals.getAllTrainees = results.rows;
-        console.log('GET ALL Trainees Controller SUCCESS')
+        console.log('GET ALL Trainees Controller SUCCESS' + ' the result ' + JSON.stringify(results.rows))
       }
     });
     return next();
@@ -62,13 +62,33 @@ const traineeController = {
     return next();
   },
 
+  async updateTrainee(req, res, next) {
+    const clientid = req.params.clientid;
+    const { firstname, lastname } = req.body;
+
+    await pool.query(
+
+      'UPDATE client_table SET firstname = $1, lastname = $2 WHERE clientid = $3',
+      [firstname, lastname, clientid],
+      (err, results) => {
+      
+      if (err) {
+        console.log('UPDATE Trainee Controller Error:', err);
+      } else {
+        console.log('UPDATE Trainee Controller SUCCESS')
+      }
+    });
+    return next();
+  },
+
+
   async deleteTrainee(req, res, next) {
-    const id = parseInt(req.params.id)
+    const clientid = req.params.clientid;
     await pool.query(
       
-      'DELETE FROM client_table WHERE id = $1', 
-      [id], 
-      (error, results) => {
+      'DELETE FROM client_table WHERE clientid = $1', 
+      [clientid], 
+      (err, results) => {
 
       if (error) {
         console.log('DELETE Trainee Controller Error:', err);
@@ -78,25 +98,6 @@ const traineeController = {
     });
     return next();
   },
-
-  async updateTrainee(req, res, next) {
-    const id = parseInt(req.params.id)
-    const { firstname, lastname } = req.body
-    await pool.query(
-
-      'UPDATE client_table SET firstname = $1, lastname = $2 WHERE id = $3',
-      [firstname, lastname, id],
-      (error, results) => {
-      
-      if (error) {
-        console.log('UPDATE Trainee Controller Error:', err);
-      } else {
-        console.log('UPDATE Trainee Controller SUCCESS')
-      }
-    });
-    return next();
-  },
 };
-
 
 module.exports = traineeController;
