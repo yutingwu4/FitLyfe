@@ -1,4 +1,4 @@
 const config = {
-    URI: 'postgres://dfqpfaet:GigyWQsljfTAXNLHbXTY62dWSgN2jTRm@ziggy.db.elephantsql.com:5432/dfqpfaet',
+    URI: 'postgres://towjlubc:LPHkwTXyZ3uzbGft1ua2qV-yJqEsNi43@ziggy.db.elephantsql.com:5432/towjlubc',
   };
   module.exports = config;
