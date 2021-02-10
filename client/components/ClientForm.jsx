@@ -11,14 +11,15 @@ import axios from 'axios';
 
 function ClientForm() {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = async (data) => {
-    try {
-      await axios.post('/api/createTrainee', data, {
-        headers: { 'content-type': 'applications/json' },
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  const onSubmit = (data) => {
+    console.log(data);
+    // try {
+    //   await axios.post('/api/createTrainee', data, {
+    //     headers: { 'content-type': 'applications/json' },
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (

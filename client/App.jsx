@@ -9,26 +9,27 @@ import axios from 'axios';
 function App() {
   // const [cards, setCards] = useState([]);
 
-  // Need a function to fetch data
   // const fetchData = async () => {
   //   const { data } = await axios.get('/endpoint');
   //   setCards(data);
   // };
 
-  // useEffect so that the app runs fetchData when screen loads.
   // useEffect(() => {
   //   fetchData();
   // }, []);
 
-  // for (let i = 0; i < 3; i++) {
-  //   cards.push(
-  //     <div key={`card_${i}`}>
-  //       <ClientCard />
-  //     </div>
-  //   );
-  // }
+  const cards = [];
+  for (let i = 0; i < 3; i++) {
+    cards.push(
+      <div key={`card_${i}`}>
+        <ClientCard />
+      </div>
+    );
+  }
+
   return (
     <Router>
+      {cards}
       <div>
         <nav>
           <ul>
@@ -41,7 +42,7 @@ function App() {
         </nav>
         <Switch>
           <Route exact path="/clientForm">
-            <ClientInfo />
+            <ClientForm />
           </Route>
         </Switch>
       </div>
