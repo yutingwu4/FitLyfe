@@ -1,68 +1,64 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  Input,
+  FormLabel,
+} from '@chakra-ui/react';
 
 function ClientForm() {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    fetch('/api/newTrainee', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+  };
 
   return (
     <form
       style={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <label>
+      <FormLabel>
         {' '}
-        Full Name:
-        <input name="name" ref={register({ required: true })} />
-      </label>
-      <label>
+        First Name:
+        <Input name="firstname" ref={register({ required: true })} />
+      </FormLabel>
+      <FormLabel>
         {' '}
-        Gender:
-        <input name="gender" ref={register({ required: true })} />
-      </label>
+        Last Name:
+        <Input name="lastname" ref={register({ required: true })} />
+      </FormLabel>
+      <FormLabel>
+        {' '}
+        Email:
+        <Input name="email" ref={register({ required: true })} />
+      </FormLabel>
 
-      <label>
-        {' '}
-        Age:
-        <input type="number" name="age" ref={register({ required: true })} />
-      </label>
+      <FormLabel>
+        Contracts:
+        <Input name="contracts" ref={register({ required: true })}></Input>
+      </FormLabel>
 
-      <label>
-        {' '}
+      {/* <FormLabel>
         Current Weight:
-        <input
-          type="number"
-          name="currentWeight"
-          ref={register({ required: true })}
-        />
-      </label>
+        <Input name="currentWeight" ref={register({ required: true })}></Input>
+      </FormLabel>
 
-      <label>
-        {' '}
+      <FormLabel>
         Goal Weight:
-        <input
-          type="number"
-          name="goalWeight"
-          ref={register({ required: true })}
-        />
-      </label>
-
-      <label style={{ display: 'flex' }}>
-        {' '}
-        Daily Activity Level:
-        <label for="1">1</label>
-        <input type="radio" id="1" name="activity" value="1" />
-        <label for="2">2</label>
-        <input type="radio" id="2" name="activity" value="2" />
-        <label for="3">3</label>
-        <input type="radio" id="3" name="activity" value="3" />
-        <label for="4">4</label>
-        <input type="radio" id="4" name="activity" value="4" />
-        <label for="5">5</label>
-        <input type="radio" id="5" name="activity" value="5" />
-      </label>
+        <Input name="goalWeight" ref={register({ required: true })}></Input> */}
+      {/* </FormLabel> */}
       {errors.exampleRequired && <span>This field is required</span>}
-      <input type="submit" />
+      <Button type="submit" colorScheme="blue">
+        Button
+      </Button>
     </form>
   );
 
