@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const whereToPlace = document.getElementById('root');
+import App from './App.jsx';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
 
 ReactDOM.render(
-     <div><h1>hi will</h1>
-    </div>, whereToPlace);
+  <ChakraProvider>
+    <App />
+  </ChakraProvider>,
+  document.getElementById('root')
+);
+
+// container folder --> main container
+// build out w/ mobile first in mind
+// create component client box, upon click
+// create component for new client
+// create component for client page
+//

@@ -1,8 +1,8 @@
 const pool = require("../models/trainerModel");
 
-pool.on("error", (err, client) => {
-  console.error("Unexpected error on idle client", err);
-  process.exit(-1);
+pool.on('error', (err, client) => {
+  console.log('Unexpected error on idle client', err)
+  process.exit(-1)
 });
 
 const traineeController = {
@@ -58,35 +58,38 @@ const traineeController = {
     return next();
   },
 
-  async deleteTrainee(req, res, next) {
-    const id = parseInt(req.params.id);
+  async updateTrainee(req, res, next) {
+    const clientid = req.params.clientid;
+    const { firstname, lastname } = req.body;
+
     await pool.query(
-      "DELETE FROM client_table WHERE id = $1",
-      [id],
-      (error, results) => {
-        if (error) {
-          console.log("DELETE Trainee Controller Error:", err);
-        } else {
-          console.log("DELETE Trainee Controller SUCCESS");
-        }
+
+      'UPDATE client_table SET firstname = $1, lastname = $2 WHERE clientid = $3',
+      [firstname, lastname, clientid],
+      (err, results) => {
+      
+      if (err) {
+        console.log('UPDATE Trainee Controller Error:'+ JSON.stringify(err));
+      } else {
+        console.log('UPDATE Trainee Controller SUCCESS')
       }
     );
     return next();
   },
 
-  async updateTrainee(req, res, next) {
-    // const clientid = req.params.clientid;
-    const clientid = 5;
-    const { firstname, lastname } = req.body;
+
+  async deleteTrainee(req, res, next) {
+    const clientid = req.params.clientid;
     await pool.query(
-      "UPDATE client_table SET firstname = $1, lastname = $2 WHERE id = $3",
-      [firstname, lastname, clientid],
-      (error, results) => {
-        if (error) {
-          console.log("UPDATE Trainee Controller Error:", err);
-        } else {
-          console.log("UPDATE Trainee Controller SUCCESS");
-        }
+      
+      'DELETE FROM client_table WHERE clientid = $1', 
+      [clientid], 
+      (err, results) => {
+
+      if (err) {
+        console.log('DELETE Trainee Controller Error:'+ JSON.stringify(err));
+      } else {
+        console.log('DELETE Trainee Controller SUCCESS')
       }
     );
     return next();

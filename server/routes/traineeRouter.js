@@ -11,6 +11,7 @@ const {
 
 //get all trainee
 router.get('/allTrainees', getAllTrainees, (req, res) => {
+  console.log('all the trainees', res.locals.getAllTrainees);
   res.status(200).json(res.locals.getAllTrainees)
   console.log('allTrainees GET REQUEST SUCCESS')
   // return res.send(res.locals.getAllTrainees)
@@ -30,14 +31,14 @@ router.post('/newTrainee', createTrainee, (req, res) => {
 
 //update trainee info
 router.put('/updateTrainee/:clientid', updateTrainee, (req, res) => {
-  res.status(200).send(`Trainee modified with ID: ${clientid}`)
+  res.status(200).send(`Trainee modified with ID: ${req.params.clientid}`)
   console.log('updateTrainee PUT REQUEST SUCCESS')
 });
 
 //delete a trainee
 router.delete('/removeTrainee/:clientid', deleteTrainee, (req, res) => {
-  res.status(200).send(`Trainee deleted with ID: ${res.clientid}`)
-  console.log('removeTrainees DELETE REQUEST SUCCESS')
+  res.status(200).send(`Trainee deleted with ID: ${req.params.clientid}`)
+  console.log('removeTrainee DELETE REQUEST SUCCESS')
 });
 
 
