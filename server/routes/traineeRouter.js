@@ -11,10 +11,8 @@ const {
 
 //get all trainee
 router.get('/allTrainees', getAllTrainees, (req, res) => {
-  // console.log('all the trainees', res.locals.getAllTrainees);
   res.status(200).json(res.locals.getAllTrainees)
-  console.log('allTrainees GET REQUEST SUCCESS', res.locals.getAllTrainees)
-  // return res.send(res.locals.getAllTrainees)
+  console.log('allTrainees GET REQUEST SUCCESS')
 });
 
 //get a trainee
