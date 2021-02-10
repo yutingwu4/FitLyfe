@@ -10,18 +10,19 @@ const traineeController = {
 
   async getAllTrainees(req, res, next) {
     await pool.query(
-      
       'SELECT * FROM client_table ORDER BY clientid ASC', 
       (err, results) => {
         // console.log(results.rows)
       if(err){
         console.log('GET ALL Trainees Controller Error:' + JSON.stringify(err))
+        return next(err);
       } else {
-        res.locals.getAllTrainees = results.rows;
-        console.log('GET ALL Trainees Controller SUCCESS' + ' the result ' + JSON.stringify(results.rows))
+        res.locals.getAllTrainees = results.rows; 
+        // console.log('GET ALL Trainees Controller SUCCESS' + ' the result ' + JSON.stringify(results.rows))
+        return next();
       }
     });
-    return next();
+    
   },
 
   async getOneTrainee(req, res, next) {
