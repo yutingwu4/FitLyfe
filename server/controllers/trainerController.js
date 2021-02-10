@@ -9,16 +9,10 @@ pool.on('error', (err, client) => {
 const TrainerController = {
   // async function to database to place rows on the response object
   async getTrainers(req, res, next) {
-    const results = await pool.query("SELECT * FROM players");
-    res.locals.allTrainers = results.rows;
-    return next();
+    const results = await pool.query("SELECT * FROM players")
+    res.locals.allTrainers = results.rows
+    return next()
   }
-
-  
-
 }
-
-
-
 
 module.exports = TrainerController
