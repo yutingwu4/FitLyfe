@@ -19,7 +19,6 @@ router.get('/allTrainees', getAllTrainees, (req, res) => {
 //get a trainee
 router.get('/oneTrainee/:clientid', getOneTrainee, (req, res) => {
   res.status(200).json(req.params.clientid)
-  // console.log('REQ', req.params.clientid)
   console.log(`oneTrainee GET REQUEST SUCCESS: ${req.params.clientid}`)
 });
 
@@ -30,8 +29,8 @@ router.post('/newTrainee', createTrainee, (req, res) => {
 });
 
 //update trainee info
-router.put('/updateTrainee', updateTrainee, (req, res) => {
-  res.status(200).send(`Trainee modified with ID: ${id}`)
+router.put('/updateTrainee/:clientid', updateTrainee, (req, res) => {
+  res.status(200).send(`Trainee modified with ID: ${clientid}`)
   console.log('updateTrainee PUT REQUEST SUCCESS')
 });
 
