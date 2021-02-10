@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-
-const whereToPlace = document.getElementById('root');
+import { ChakraProvider } from '@chakra-ui/react';
 
 ReactDOM.render(
-  <Router>
+  // <Router>
+  <ChakraProvider>
     <App />
-  </Router>,
-  whereToPlace
+  </ChakraProvider>,
+  // </Router>,
+  document.getElementById('root')
 );
 
 // container folder --> main container
