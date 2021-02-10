@@ -8,4 +8,4 @@ const pool = new Pool({
   connectionString: PG_URI,
 });
 
-module.exports = pool
+module.exports = pool;
