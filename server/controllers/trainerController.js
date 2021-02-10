@@ -1,4 +1,4 @@
-const pool = require('../server/models/TrainerModel')
+const pool = require('../model/TrainerModel')
 
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err)
