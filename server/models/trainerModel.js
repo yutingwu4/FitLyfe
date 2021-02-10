@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
-// const config = require('../../config.js')
-
-const PG_URI = 'postgres://dfqpfaet:GigyWQsljfTAXNLHbXTY62dWSgN2jTRm@ziggy.db.elephantsql.com:5432/dfqpfaet'
+const config = require('../../config')
+const PG_URI = config.URI;
 
 // declare a variable for the new pool connection string
 const pool = new Pool({
