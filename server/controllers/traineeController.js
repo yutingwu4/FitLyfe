@@ -1,7 +1,7 @@
 const pool = require('../models/TrainerModel')
 
 pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err)
+  console.log('Unexpected error on idle client', err)
   process.exit(-1)
 });
 
@@ -34,7 +34,7 @@ const traineeController = {
       (err, results) => {
 
       if(err) {
-        console.log('GET ONE Trainee Controller Error:', err)
+        console.log('GET ONE Trainee Controller Error:' + JSON.stringify(err))
       } else {
         res.locals.getOneTrainee = results.rows;
         // console.log(res.locals.getOneTrainee)
@@ -53,7 +53,7 @@ const traineeController = {
       (err, results) => {
         
         if(err) {
-          console.log('CREATE Trainee Controller Error:', err);
+          console.log('CREATE Trainee Controller Error:' + JSON.stringify(err));
         } else {
         res.locals.createTrainee = req.body;
         console.log('res.locals', res.locals.createTrainee.firstname)
@@ -73,7 +73,7 @@ const traineeController = {
       (err, results) => {
       
       if (err) {
-        console.log('UPDATE Trainee Controller Error:', err);
+        console.log('UPDATE Trainee Controller Error:'+ JSON.stringify(err));
       } else {
         console.log('UPDATE Trainee Controller SUCCESS')
       }
@@ -90,8 +90,8 @@ const traineeController = {
       [clientid], 
       (err, results) => {
 
-      if (error) {
-        console.log('DELETE Trainee Controller Error:', err);
+      if (err) {
+        console.log('DELETE Trainee Controller Error:'+ JSON.stringify(err));
       } else {
         console.log('DELETE Trainee Controller SUCCESS')
       }
