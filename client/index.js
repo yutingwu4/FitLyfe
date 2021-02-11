@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { ChakraProvider } from '@chakra-ui/react';
 import { GlobalProvider } from '../contexts/globalContext';
-import './scss/main.scss'
+import './scss/main.scss';
 
 ReactDOM.render(
   <GlobalProvider>
@@ -11,5 +11,5 @@ ReactDOM.render(
       <App />
     </ChakraProvider>
   </GlobalProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

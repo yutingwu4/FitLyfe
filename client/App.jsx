@@ -3,12 +3,11 @@ import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import ClientCard from './components/ClientCard';
 import ClientInfo from './components/ClientInfo';
 import ClientForm from './components/ClientForm';
-import { Button } from '@chakra-ui/react';
 import { globalContext } from '../contexts/globalContext';
+import { Avatar, AvatarBadge, AvatarGroup, Button } from "@chakra-ui/react"
 
 function App() {
   const { clients, setClients } = useContext(globalContext);
-
   const fetchData = () => {
     fetch('/api/allTrainees', {
       method: 'GET',
@@ -31,7 +30,6 @@ function App() {
     cards.push(
       <Switch>
         <Route exact path='/'>
-          <div>
             <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
               <button className='btn'>
                 <ClientCard
@@ -43,7 +41,6 @@ function App() {
                 />
               </button>
             </Link>
-          </div>
         </Route>
 
         <Route path={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}>
@@ -65,23 +62,26 @@ function App() {
 
   return (
     <Router>
-      <div>
-        {cards}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/clientForm">
-                <Button>Add New Client</Button>
+        <div className="navbar">
+          <p className="navbar__name">FitLyfe</p>
+          <Avatar size="xl"/>
+        </div>
+            <div className="main__route">
+              <Link to="/" className="main__link">
+                Show Clients
               </Link>
-            </li>
-          </ul>
-        </nav>
+              <Link to="/clientForm" className="main__link">
+                Add New Client
+              </Link>
+            </div>
+        <div className="cardContainer">
+        {cards}
+        </div>
         <Switch>
           <Route exact path="/clientForm">
             <ClientForm />
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }

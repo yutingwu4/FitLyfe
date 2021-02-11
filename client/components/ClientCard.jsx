@@ -7,12 +7,10 @@ function ClientCard({ firstname, lastname, email, clientid }) {
   return (
     <Switch>
       <Route exact path="/">
-      
           <Box
             className="clientCard" 
           >
             <p>{`${firstname} ${lastname}`}</p>
-            <p>{email}</p>
           </Box>
       </Route>
       <Route path="/clientid">
