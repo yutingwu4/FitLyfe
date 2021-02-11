@@ -1,29 +1,27 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ClientInfo from './ClientInfo';
 
-function ClientCard() {
+function ClientCard({ firstname, lastname, email }) {
   return (
     <Switch>
       <Route exact path="/">
         <div>
-          <Link to="/clientid">
-            <button className="btn">Click this button</button>
-          </Link>
           <Box
-            border="1px solid white"
+            border="1px solid grey"
             borderRadius="4px"
-            bg="tomato"
-            w="100%"
+            bg="white"
+            h="20rem"
+            w="15rem"
             p={2}
-            color="white"
+            color="black"
           >
-            <p> Wanda </p>
+            <p>{`${firstname} ${lastname}`}</p>
+            <p>{email}</p>
           </Box>
         </div>
       </Route>
-
       <Route path="/clientid">
         <ClientInfo />
       </Route>

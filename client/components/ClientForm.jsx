@@ -7,9 +7,12 @@ import {
   Input,
   FormLabel,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 function ClientForm() {
+  const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
+
   const onSubmit = (data) => {
     fetch('/api/newTrainee', {
       method: 'POST',
@@ -18,6 +21,7 @@ function ClientForm() {
         'content-type': 'application/json',
       },
     });
+    history.goBack();
   };
 
   return (
