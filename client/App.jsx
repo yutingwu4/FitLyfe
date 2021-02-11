@@ -42,7 +42,7 @@ function App() {
           <div>   
             <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
               <button className='btn'>
-              <img alt={'trainee2' + {i}} src={traineeArr[i]}  width='300px' height='300px' />
+              <img alt={'trainee2' + {i}} src={traineeArr[i]}  />
                 <ClientCard
                   key={i}
                   clientid={clients[i].clientid}
