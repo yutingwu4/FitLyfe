@@ -5,6 +5,9 @@ import ClientInfo from './components/ClientInfo';
 import ClientForm from './components/ClientForm';
 import { Button } from '@chakra-ui/react';
 import { globalContext } from '../contexts/globalContext';
+import Trainee2 from '../assets/trainee2.png';
+// import Trainee2 from '../assets/trainee2.png';
+// import Trainee3 from '../assets/trainee3.jpg';
 
 function App() {
   const { clients, setClients } = useContext(globalContext);
@@ -26,12 +29,14 @@ function App() {
   }, []);
 
   const cards = [];
-
+  // const traineeArr = [Trainee2]
   for (let i = 0; i < clients.length; i++) {
     cards.push(
       <Switch>
         <Route exact path='/'>
           <div>
+         
+              
             <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
               <button className='btn'>
                 <ClientCard
@@ -66,6 +71,8 @@ function App() {
   return (
     <Router>
       <div>
+      <img alt={'trainee2'} src={Trainee2}  />
+              
         {cards}
         <nav>
           <ul>

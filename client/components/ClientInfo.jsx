@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 function ClientInfo({ clientid, firstname, lastname, email }) {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // const onSubmit = (data) => console.log(data);
 
   const fetchData = () => {
     fetch(`/api/clientInfo/${clientid}`, {
