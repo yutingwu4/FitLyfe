@@ -48,7 +48,14 @@ function App() {
 
         <Route path={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}>
         <div>
-          <ClientInfo />
+          <ClientInfo
+          key={i}
+          //pass in biometric info
+          firstname={clients[i].firstname}
+          lastname={clients[i].lastname}
+          email={clients[i].email}
+          clientid={clients[i].clientid}
+           />
         </div>
       </Route>
       </Switch>

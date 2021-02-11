@@ -1,35 +1,50 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function ClientInfo() {
+function ClientInfo({ clientid, firstname, lastname, email }) {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = (data) => console.log(data);
+
+  const fetchData = () => {
+    fetch(`/api/clientInfo/${clientid}`, {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // onSubmit handler to submit additional trainee metrics to DB.
+  const onSubmit = (data) => {
+    fetch(`/api/creatediet/${clientid}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    history.goBack();
+  };
 
   return (
     <div>
       <div className="clientInfo__left">
-        {/* Client Photo */}
-        {/* For the time-being we would just store dummy data image. */}
         <img src="#" />
-        {/* Name of Client */}
-        <p id="name">Wanda</p>
-        <p id="age">Age: </p>
+        <p>Trainee Name: {`${firstname} ${lastname}`}</p>
+        <p>Email: {`${email}`}</p>
       </div>
 
       <div className="clientInfo__leftStats">
-        {/* Gender */}
-        <p id="clientGender">Gender: </p>
-        {/* Current Weight */}
-        <p id="currentWeight">Current Weight: </p>
-        {/* Goal Weight */}
-        <p id="goalWeight">Goal Weight: </p>
-        {/* Macro Goals */}
-        <p id="macroGoal">Macro Goal: </p>
-        {/* Nutrional Goals/Calorie */}
-        <p id="nutritionalGoal">Nutritional Goals: </p>
+        <p id="age">Age: </p>
+        <p id="gender">Gender: </p>
+        <p id="weight">Weight: </p>
+        <p id="height">Height: </p>
       </div>
+
       <div>
-        {/* Client Info FORM */}
         <form
           style={{ display: 'flex', flexDirection: 'column' }}
           onSubmit={handleSubmit(onSubmit)}
@@ -68,13 +83,7 @@ function ClientInfo() {
           <input type="submit" />
         </form>
       </div>
-      {/* Water Intake oz*/}
-      {/* Daily Marco Goals checkbox if hit*/}
-      {/* Calorie Intake  */}
-      {/* SAVE */}
     </div>
-
-    // add back button functionality
   );
 }
 export default ClientInfo;
