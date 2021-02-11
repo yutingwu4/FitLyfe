@@ -27,56 +27,59 @@ function ClientForm() {
 
   return (
     <Box>
-    <form
-      style={{ display: 'flex', flexDirection: 'column' }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <FormLabel>
-        {' '}
-        First Name:
-        <Input name="firstname" ref={register({ required: true })} />
-      </FormLabel>
-      <FormLabel>
-        {' '}
-        Last Name:
-        <Input name="lastname" ref={register({ required: true })} />
-      </FormLabel>
-      <FormLabel>
-        {' '}
-        Email:
-        <Input name="email" ref={register({ required: true })} />
-      </FormLabel>
+      <form
+        className="clientForm"
+        style={{ display: 'flex', flexDirection: 'column' }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="clientForm__nameInput">
+          <FormLabel>
+            {' '}
+            First Name
+            <Input name="firstname" ref={register({ required: true })} />
+          </FormLabel>
+          <FormLabel>
+            {' '}
+            Last Name
+            <Input name="lastname" ref={register({ required: true })} />
+          </FormLabel>
+        </div>
+        <FormLabel>
+          {' '}
+          Email
+          <Input name="email" ref={register({ required: true })} />
+        </FormLabel>
 
-      <FormLabel>
-        Contracts:
-        <Input name="contracts" ref={register({ required: true })}></Input>
-      </FormLabel>
+        <FormLabel>
+          Contracts
+          <Input name="contracts" ref={register({ required: true })}></Input>
+        </FormLabel>
 
-      <FormLabel>
-        Age:
-        <Input name="age" ref={register({ required: true })}></Input>
-      </FormLabel>
+        <FormLabel>
+          Age
+          <Input name="age" ref={register({ required: true })}></Input>
+        </FormLabel>
 
-      <FormLabel>
-        Gender:
-        <Input name="gender" ref={register({ required: true })}></Input>
-      </FormLabel>
+        <FormLabel>
+          Gender
+          <Input name="gender" ref={register({ required: true })}></Input>
+        </FormLabel>
 
-      <FormLabel>
-        Weight:
-        <Input name="weight" ref={register({ required: true })}></Input>
-      </FormLabel>
+        <FormLabel>
+          Weight
+          <Input name="weight" ref={register({ required: true })}></Input>
+        </FormLabel>
 
-      <FormLabel>
-        Height:
-        <Input name="height" ref={register({ required: true })}></Input>
-      </FormLabel>
+        <FormLabel>
+          Height
+          <Input name="height" ref={register({ required: true })}></Input>
+        </FormLabel>
 
-      {errors.exampleRequired && <span>This field is required</span>}
-      <Button type="submit" colorScheme="blue">
-        Button
-      </Button>
-    </form>
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Button className="clientForm__btn" type="submit" colorScheme="blue">
+          Save
+        </Button>
+      </form>
     </Box>
   );
 

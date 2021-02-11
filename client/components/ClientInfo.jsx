@@ -1,5 +1,13 @@
 import React from 'react';
-import { useForm  } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import ClientCard from './ClientCard';
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  Input,
+  FormLabel,
+} from '@chakra-ui/react';
 
 function ClientInfo({ clientid, firstname, lastname, email }) {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -29,56 +37,70 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
 
   return (
     <div>
-      <div className="clientInfo__left">
-        <img src="#" />
-        <p>Trainee Name: {`${firstname} ${lastname}`}</p>
-        <p>Email: {`${email}`}</p>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        className="clientInfo"
+      >
+        <p className="clientInfo__metrics clientName">{`${firstname} ${lastname}`}</p>
+        <p className="clientInfo__metrics">{`${email}`}</p>
+        <div className="clientInfo__divider"></div>
+        <p className="clientInfo__metrics" id="age">
+          Age{' '}
+        </p>
+        <p className="clientInfo__metrics" id="gender">
+          Gender{' '}
+        </p>
+        <p className="clientInfo__metrics" id="weight">
+          Weight{' '}
+        </p>
+        <p className="clientInfo__metrics" id="height">
+          Height{' '}
+        </p>
+        <div className="clientInfo__divider"></div>
       </div>
-
-      <div className="clientInfo__leftStats">
-        <p id="age">Age: </p>
-        <p id="gender">Gender: </p>
-        <p id="weight">Weight: </p>
-        <p id="height">Height: </p>
-      </div>
-
       <div>
         <form
+          className="clientForm"
           style={{ display: 'flex', flexDirection: 'column' }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <label>
+          <FormLabel className="clientForm__label">
             {' '}
-            Water Intake:
-            <input
+            Water Intake (oz.)
+            <Input
               name="waterIntake"
               // type="number"
               ref={register({ required: true })}
             />
-            ozs.
-          </label>
+          </FormLabel>
 
-          <label>
+          <FormLabel>
             {' '}
-            Daily Macro Goals:
-            <input
+            Daily Macro Goals
+            <Input
               name="DMG"
               // type="checkbox"
               ref={register({ required: true })}
             />
-          </label>
+          </FormLabel>
 
-          <label>
+          <FormLabel>
             {' '}
-            Calorie Intake:
-            <input
+            Calorie Intake
+            <Input
               name="calorieIntake"
               // type="number"
               ref={register({ required: true })}
             />
-          </label>
+          </FormLabel>
 
-          <input type="submit" />
+          <Button className="clientForm__btn" type="submit">
+            Save
+          </Button>
         </form>
       </div>
     </div>
