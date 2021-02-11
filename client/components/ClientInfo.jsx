@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ClientCard from './ClientCard';
 import {
@@ -8,12 +8,26 @@ import {
   Input,
   FormLabel,
 } from '@chakra-ui/react';
+import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { DietForm } from './DietForm.jsx';
+import { globalContext } from '../../contexts/globalContext.js';
 
-function ClientInfo({ clientid, firstname, lastname, email }) {
+function ClientInfo({
+  clientid,
+  contracts,
+  firstname,
+  lastname,
+  email,
+  age,
+  gender,
+  weight_lbs,
+  height,
+}) {
   const { register, handleSubmit, watch, errors } = useForm();
+  const { clientData, setClientData } = useContext(globalContext);
 
   const fetchData = () => {
-    fetch(`/api/clientInfo/${clientid}`, {
+    fetch(`/api/clientinfo/${clientid}`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     })
@@ -24,19 +38,10 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
       .catch((err) => console.log(err));
   };
 
-  // onSubmit handler to submit additional trainee metrics to DB.
-  const onSubmit = (data) => {
-    fetch(`/api/creatediet/${clientid}`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-  };
+  // TODO: add route #13 to get diet_table info
 
   return (
-    <div>
+    <Router>
       <div
         style={{
           display: 'flex',
@@ -61,49 +66,23 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
           Height{' '}
         </p>
         <div className="clientInfo__divider"></div>
+
+        <div className="main__route">
+          <Link
+            to={'/DietForm' + firstname + lastname + clientid}
+            className="main__link"
+          >
+            Add New Diet
+          </Link>
+        </div>
+        <Switch>
+          <Route exact path={'/DietForm' + firstname + lastname + clientid}>
+            <DietForm clientid={clientid} />
+          </Route>
+        </Switch>
       </div>
-      <div>
-        <form
-          className="clientForm"
-          style={{ display: 'flex', flexDirection: 'column' }}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <FormLabel className="clientForm__label">
-            {' '}
-            Water Intake (oz.)
-            <Input
-              name="waterIntake"
-              // type="number"
-              ref={register({ required: true })}
-            />
-          </FormLabel>
-
-          <FormLabel>
-            {' '}
-            Daily Macro Goals
-            <Input
-              name="DMG"
-              // type="checkbox"
-              ref={register({ required: true })}
-            />
-          </FormLabel>
-
-          <FormLabel>
-            {' '}
-            Calorie Intake
-            <Input
-              name="calorieIntake"
-              // type="number"
-              ref={register({ required: true })}
-            />
-          </FormLabel>
-
-          <Button className="clientForm__btn" type="submit">
-            Save
-          </Button>
-        </form>
-      </div>
-    </div>
+    </Router>
   );
 }
+
 export default ClientInfo;
