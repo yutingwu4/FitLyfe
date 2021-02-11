@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import ClientCard from './components/ClientCard';
+import ClientInfo from './components/ClientInfo';
 import ClientForm from './components/ClientForm';
 import { Button } from '@chakra-ui/react';
 import { globalContext } from '../contexts/globalContext';
@@ -28,15 +29,32 @@ function App() {
 
   for (let i = 0; i < clients.length; i++) {
     cards.push(
-      <ClientCard
-        key={i}
-        clientid={clients[i].clientid}
-        firstname={clients[i].firstname}
-        lastname={clients[i].lastname}
-        email={clients[i].email}
-      />
+      <Switch>
+        <Route exact path='/'>
+          <div>
+            <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
+              <button className='btn'>
+                <ClientCard
+                  key={i}
+                  clientid={clients[i].clientid}
+                  firstname={clients[i].firstname}
+                  lastname={clients[i].lastname}
+                  email={clients[i].email}
+                />
+              </button>
+            </Link>
+          </div>
+        </Route>
+
+        <Route path={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}>
+        <div>
+          <ClientInfo />
+        </div>
+      </Route>
+      </Switch>
     );
   }
+  
 
   return (
     <Router>
