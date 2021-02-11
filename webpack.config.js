@@ -38,12 +38,17 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpg|jpeg|png)$/,
-        use: {
-         loader: 'url-loader'
-        }
-       }
-   
+        test: /\.(png|jpg|gif)$/i,
+        use: 'url-loader'
+    },
+    {
+      test: /\.(png|jpe?g|gif)$/i,
+      use: [
+        {
+          loader: 'file-loader',
+        },
+      ],
+    },
     ],
   },
   plugins: [

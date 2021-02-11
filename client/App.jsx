@@ -5,9 +5,14 @@ import ClientInfo from './components/ClientInfo';
 import ClientForm from './components/ClientForm';
 import { Button } from '@chakra-ui/react';
 import { globalContext } from '../contexts/globalContext';
-import Trainee2 from '../assets/trainee2.png';
-// import Trainee2 from '../assets/trainee2.png';
-// import Trainee3 from '../assets/trainee3.jpg';
+import Trainee1 from '../assets/trainee1.jpg';
+import Trainee2 from '../assets/trainee2.jpg';
+import Trainee3 from '../assets/trainee3.png';
+import Trainee4 from '../assets/trainee4.jpg';
+import Trainee5 from '../assets/trainee5.jpeg';
+import Trainee6 from '../assets/trainee6.jpg';
+import Trainee7 from '../assets/trainee7.jpg';
+
 
 function App() {
   const { clients, setClients } = useContext(globalContext);
@@ -29,16 +34,15 @@ function App() {
   }, []);
 
   const cards = [];
-  // const traineeArr = [Trainee2]
+  const traineeArr = [Trainee1, Trainee2, Trainee3, Trainee4, Trainee5, Trainee6, Trainee7]
   for (let i = 0; i < clients.length; i++) {
     cards.push(
       <Switch>
         <Route exact path='/'>
-          <div>
-         
-              
+          <div>   
             <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
               <button className='btn'>
+              <img alt={'trainee2' + {i}} src={traineeArr[i]}  width='300px' height='300px' />
                 <ClientCard
                   key={i}
                   clientid={clients[i].clientid}
@@ -70,9 +74,7 @@ function App() {
 
   return (
     <Router>
-      <div>
-      <img alt={'trainee2'} src={Trainee2}  />
-              
+      <div>          
         {cards}
         <nav>
           <ul>
