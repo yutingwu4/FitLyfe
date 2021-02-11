@@ -3,7 +3,6 @@ import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import ClientCard from './components/ClientCard';
 import ClientInfo from './components/ClientInfo';
 import ClientForm from './components/ClientForm';
-import { Button } from '@chakra-ui/react';
 import { globalContext } from '../contexts/globalContext';
 import Trainee1 from '../assets/trainee1.jpg';
 import Trainee2 from '../assets/trainee2.jpg';
@@ -12,11 +11,11 @@ import Trainee4 from '../assets/trainee4.jpg';
 import Trainee5 from '../assets/trainee5.jpeg';
 import Trainee6 from '../assets/trainee6.jpg';
 import Trainee7 from '../assets/trainee7.jpg';
+import { Avatar, AvatarBadge, AvatarGroup, Button } from "@chakra-ui/react"
 
 
 function App() {
   const { clients, setClients } = useContext(globalContext);
-
   const fetchData = () => {
     fetch('/api/allTrainees', {
       method: 'GET',
@@ -39,7 +38,7 @@ function App() {
     cards.push(
       <Switch>
         <Route exact path='/'>
-          <div>   
+          <div>
             <Link to={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}  >
               <button className='btn'>
               <img alt={'trainee2' + {i}} src={traineeArr[i]}  width='400px' height='400px' />
@@ -52,7 +51,6 @@ function App() {
                 />
               </button>
             </Link>
-          </div>
         </Route>
 
         <Route path={'/' + clients[i].firstname + clients[i].lastname + clients[i].clientid}>
@@ -74,23 +72,26 @@ function App() {
 
   return (
     <Router>
-      <div>          
-        {cards}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/clientForm">
-                <Button>Add New Client</Button>
+        <div className="navbar">
+          <p className="navbar__name">FitLyfe</p>
+          <Avatar size="xl"/>
+        </div>
+            <div className="main__route">
+              <Link to="/" className="main__link">
+                Show Clients
               </Link>
-            </li>
-          </ul>
-        </nav>
+              <Link to="/clientForm" className="main__link">
+                Add New Client
+              </Link>
+            </div>
+        <div className="cardContainer">
+        {cards}
+        </div>
         <Switch>
           <Route exact path="/clientForm">
             <ClientForm />
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }

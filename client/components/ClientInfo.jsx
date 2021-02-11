@@ -1,9 +1,8 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm  } from 'react-hook-form';
 
 function ClientInfo({ clientid, firstname, lastname, email }) {
   const { register, handleSubmit, watch, errors } = useForm();
-  // const onSubmit = (data) => console.log(data);
 
   const fetchData = () => {
     fetch(`/api/clientInfo/${clientid}`, {
@@ -26,7 +25,6 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
         'content-type': 'application/json',
       },
     });
-    history.goBack();
   };
 
   return (
@@ -54,7 +52,7 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
             Water Intake:
             <input
               name="waterIntake"
-              type="number"
+              // type="number"
               ref={register({ required: true })}
             />
             ozs.
@@ -65,7 +63,7 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
             Daily Macro Goals:
             <input
               name="DMG"
-              type="checkbox"
+              // type="checkbox"
               ref={register({ required: true })}
             />
           </label>
@@ -75,7 +73,7 @@ function ClientInfo({ clientid, firstname, lastname, email }) {
             Calorie Intake:
             <input
               name="calorieIntake"
-              type="number"
+              // type="number"
               ref={register({ required: true })}
             />
           </label>
