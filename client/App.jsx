@@ -1,36 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import ClientInfo from './components/ClientInfo';
 import ClientCard from './components/ClientCard';
 import ClientForm from './components/ClientForm';
 import { Button } from '@chakra-ui/react';
-import axios from 'axios';
+import { globalContext } from '../contexts/globalContext';
 
 function App() {
-  // const [cards, setCards] = useState([]);
+  const { clients, setClients } = useContext(globalContext);
 
-  // const fetchData = async () => {
-  //   const { data } = await axios.get('/endpoint');
-  //   setCards(data);
-  // };
+  const fetchData = () => {
+    fetch('/api/allTrainees', {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setClients(data);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const cards = [];
-  for (let i = 0; i < 3; i++) {
+
+  for (let i = 0; i < clients.length; i++) {
     cards.push(
-      <div key={`card_${i}`}>
-        <ClientCard />
-      </div>
+      <ClientCard
+        key={i}
+        clientid={clients[i].clientid}
+        firstname={clients[i].firstname}
+        lastname={clients[i].lastname}
+        email={clients[i].email}
+      />
     );
   }
 
   return (
     <Router>
-      {cards}
       <div>
+        {cards}
         <nav>
           <ul>
             <li>
