@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Box } from '@chakra-ui/react';
 import {
   Button,
   ButtonGroup,
@@ -7,9 +8,12 @@ import {
   Input,
   FormLabel,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 function ClientForm() {
+  const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
+
   const onSubmit = (data) => {
     fetch('/api/newTrainee', {
       method: 'POST',
@@ -18,9 +22,11 @@ function ClientForm() {
         'content-type': 'application/json',
       },
     });
+    history.goBack();
   };
 
   return (
+    <Box>
     <form
       style={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={handleSubmit(onSubmit)}
@@ -46,20 +52,32 @@ function ClientForm() {
         <Input name="contracts" ref={register({ required: true })}></Input>
       </FormLabel>
 
-      {/* <FormLabel>
-        Current Weight:
-        <Input name="currentWeight" ref={register({ required: true })}></Input>
+      <FormLabel>
+        Age:
+        <Input name="age" ref={register({ required: true })}></Input>
       </FormLabel>
 
       <FormLabel>
-        Goal Weight:
-        <Input name="goalWeight" ref={register({ required: true })}></Input> */}
-      {/* </FormLabel> */}
+        Gender:
+        <Input name="gender" ref={register({ required: true })}></Input>
+      </FormLabel>
+
+      <FormLabel>
+        Weight:
+        <Input name="weight" ref={register({ required: true })}></Input>
+      </FormLabel>
+
+      <FormLabel>
+        Height:
+        <Input name="height" ref={register({ required: true })}></Input>
+      </FormLabel>
+
       {errors.exampleRequired && <span>This field is required</span>}
       <Button type="submit" colorScheme="blue">
         Button
       </Button>
     </form>
+    </Box>
   );
 
   // add back button functionality

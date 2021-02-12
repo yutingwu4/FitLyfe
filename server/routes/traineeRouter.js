@@ -7,6 +7,7 @@ const {
   createTrainee,
   updateTrainee,
   deleteTrainee,
+  createDailyDietIntake,
 } = require("../controllers/traineeController");
 
 //get all trainees
@@ -41,6 +42,14 @@ router.put("/updateTrainee/:clientid", updateTrainee, (req, res) => {
 router.delete("/removeTrainee/:clientid", deleteTrainee, (req, res) => {
   res.status(200).send(`Trainee deleted with ID: ${req.params.clientid}`);
   console.log("removeTrainee DELETE REQUEST SUCCESS");
+});
+
+//add water, calorie, macro intake for specific trainee
+router.post("/newWaterMacroCalorie", createDailyDietIntake, (req, res) => {
+  res
+    .status(200)
+    .send(`newWaterMacroCalorie created for client: ${req.params.clientid}`);
+  console.log("newWaterMacroCalorie POST REQUEST SUCCESS");
 });
 
 module.exports = router;
